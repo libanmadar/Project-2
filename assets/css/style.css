@@ -99,7 +99,9 @@ hr {
     max-width: 70%;
 }
 
-
+footer {
+    text-align: center;
+}
 
 
 .tm-section-mt {
@@ -108,6 +110,7 @@ hr {
 
 .tm-contact-form {
     max-width: 500px;
+    text-align: center;
 }
 
 .form-control {
