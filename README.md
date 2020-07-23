@@ -1,5 +1,6 @@
 # Website-Template
 
+
 # Project requirements:
 - Must use a Node and Express Web Server
 - Must be backed by a MySQL Database with a Sequelize ORM
@@ -11,7 +12,10 @@
 - Must meet good quality coding standards (indentation, scoping, naming)
 - Must not expose sensitive API key information on the server.
 
+# Must utilize at least...
+D3 library allows you to create graphic statistical data, such as various kinds of graphs, or high charts
 
+avoid typescript for this project.
 
 
 # notes on Api security
