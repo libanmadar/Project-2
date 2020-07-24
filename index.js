@@ -5,22 +5,24 @@ app.get('/', (req, res) => {
   res.send('test345');
 });
 
-app.get('/the', (req, res) => {
-  res.send('test678');
-});
-
-app.get('/the/thing', (req, res) => {
-  res.send('test1010');
-});
+const surveyQuestions = [
+  { id: 1, rating: 'taste_rating' },
+  { id: 2, rating: 'service_rating' },
+  { id: 3, rating: 'parking_rating' }
+];
 
 app.get('/api/surveyQuestions', (req, res) => {
-  res.send('restaurant has the following ratings:');
+  res.send(surveyQuestions);
 });
 
-//taste_rating,service_rating,parking_rating,speedOfOrderPreparation_rating,restaurant_name,address
-///:parking_rating/:speedOfOrderPreparation_rating/:restaurant_name/:address
-app.get('/api/surveyData/:taste_rating/:service_rating', (req, res) => {
-  res.send(req.params);
+
+// ...'/api/surveyQuestions/:id'... should refer to /api/surveyQuestions/:taste_rating/:service_rating/:parking_rating/:speedOfOrderPreparation_rating/:restaurant_name/:address
+
+app.get('/api/surveyQuestions/:id', (req, res) => {
+  let surveyQuestion = surveyQuestions.find(c => c.id === parseInt(req.params.id));
+  //object not found: if survey question is not found on surver, the response 404 not found is returned. 
+  if (!surveyQuestion) res.status(404).send('No matching survey question found.');
+  res.send(surveyQuestion);
 });
 
 //reading the value of an environment variable termed 'PORT'
