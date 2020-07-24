@@ -1,9 +1,18 @@
-const express = require("express");
-let app = express();
-//port to listen on...
-const PORT = 5000;
+const http = require('http');
 
-const path = require("path");
+const server = http.createServer((req, res) => {
+  if (req.url === '/') {
+    res.write('Test123');
+    res.end();
+  }
 
-const bodyParser = require("body-parser");
+  if (req.url === '/api/surveyQuestions') {
+    res.write(JSON.stringify([1, 2, 3]));
+    res.end();
+  }
+});
+
+server.listen(5100);
+
+console.log('Listening on port 5100...');
 
