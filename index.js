@@ -1,5 +1,7 @@
 const express = require('express');
 const app = express();
+//middleware functions
+app.use(express.json());
 
 app.get('/', (req, res) => {
   res.send('test345');
@@ -8,12 +10,29 @@ app.get('/', (req, res) => {
 const surveyQuestions = [
   { id: 1, rating: 'taste_rating' },
   { id: 2, rating: 'service_rating' },
-  { id: 3, rating: 'parking_rating' }
+  { id: 3, rating: 'parking_rating' },
+  { id: 4, rating: 'speedOfOrderPreparation_rating' },
+  { id: 5, restaurant_name: 'restaurant_name' },
+  { id: 6, address: 'address' }
 ];
 
 app.get('/api/surveyQuestions', (req, res) => {
   res.send(surveyQuestions);
 });
+
+//route handler
+app.post('/api/surveyQuestions', (req, res) => {
+  const surveyQuestion = {
+    id: surveyQuestions.length + 1,
+    name: req.body.name
+  };
+  //push new survey question to surveyQuestions array
+  surveyQuestions.push(surveyQuestion);
+  //return surveyQuestion object to the client
+  res.send(surveyQuestion);
+});
+
+
 
 
 // ...'/api/surveyQuestions/:id'... should refer to /api/surveyQuestions/:taste_rating/:service_rating/:parking_rating/:speedOfOrderPreparation_rating/:restaurant_name/:address
