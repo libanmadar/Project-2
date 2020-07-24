@@ -14,10 +14,19 @@ app.get('/the/thing', (req, res) => {
 });
 
 app.get('/api/surveyQuestions', (req, res) => {
-  res.send([1, 2, 3]);
+  res.send('restaurant has the following ratings:');
 });
 
-app.listen(5100, () => console.log('Listening on port 5100...'));
+//taste_rating,service_rating,parking_rating,speedOfOrderPreparation_rating,restaurant_name,address
+///:parking_rating/:speedOfOrderPreparation_rating/:restaurant_name/:address
+app.get('/api/surveyData/:taste_rating/:service_rating', (req, res) => {
+  res.send(req.params);
+});
+
+//reading the value of an environment variable termed 'PORT'
+//5100 is an arbitrary number. I'm not 100% sure why process.env is used, but my perception is that process.env tells the server, 'if port 5100 is in use, use an alternate available port. 
+const port = process.env.PORT || 5100;
+app.listen(5100, () => console.log(`Listening on port ${port}...`));
 
 
 
